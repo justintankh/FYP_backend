@@ -1,9 +1,7 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 import pickle
-import config
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
-from IPython.display import display, HTML
 from bs4 import BeautifulSoup
 import requests
 from google_images_search import GoogleImagesSearch
@@ -18,6 +16,7 @@ import re
 import unidecode
 import nltk
 nltk.download('stopwords')
+nltk.download('omw-1.4')
 recommender_dir = './api/recommender_files/'
 
 
