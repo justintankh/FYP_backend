@@ -99,7 +99,6 @@ python-pptx==0.6.21
 python-resize-image==1.1.20
 pytz==2021.1
 pytz-deprecation-shim==0.1.0.post0
-pywin32==301
 pyzbar==0.1.8
 pyzmq==22.2.1
 regex==2021.11.10
@@ -141,7 +140,6 @@ urllib3==1.26.5
 wcwidth==0.2.5
 websockets==9.1
 Werkzeug==2.0.1
-windows-curses==2.3.0
 wrapt==1.12.1
 wsproto==1.0.0
 xarray==0.17.0
