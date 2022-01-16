@@ -307,7 +307,7 @@ class GetRecipeRecommendation(APIView):
     lookup_url_kwarg = 'code'
 
     def get(self, request, format=None):
-        # fetch("/api/recommend_recipe" + "?code=" + p_code+p_code2&p_code3)
+        # fetch("/api/recommend_recipe" + "?code=" + p_code+p_code2+p_code3)
         code = request.GET.get(self.lookup_url_kwarg)
         if code != None:
             perishables = []
