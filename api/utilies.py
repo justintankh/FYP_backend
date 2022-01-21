@@ -22,14 +22,16 @@ recommender_dir = './api/recommender_files/'
 
 
 def gis_url(query):
+    print('gis_url query:', query)
     # API key and CX
     gis = GoogleImagesSearch(
         'AIzaSyDavRxKC9Jcs6YRYWE0nJTe1ylyrlrtfY0', '47d748b4b3354fccc')
     gis.search(search_params={'q': query, 'num': 1})
+    print('gis_url result:', gis.results()[0].url)
     return gis.results()[0].url
 
 
-def product_information_via_barcode(barcode):
+def product_information_via_barcode(barcode, reg_title=None):
     # Loading of ingredients contained in DB
     cleaned_recipe_df = pd.read_csv(
         recommender_dir + "test_all_recipe_full.csv")
@@ -46,10 +48,14 @@ def product_information_via_barcode(barcode):
     # If barcodes does not exist
     if (soup.find("h1", property="food:name") == None):
         print("\x1b[31m\"Barcode '{}' not found.\"\x1b[0m".format(barcode))
-        return False, '', ''
+        if (reg_title == None):
+            return False, '', ''
+        print("\x1b[31m\"Falling back on title '{}'.\"\x1b[0m".format(reg_title))
 
     # Parsing
-    title = soup.find("h1", property="food:name").text
+    title = reg_title
+    if (soup.find("h1", property="food:name") != None):
+        title = soup.find("h1", property="food:name").text
 
     # Cases without category, fallback on title as category
     categories_list = [x.strip() for x in title.replace(

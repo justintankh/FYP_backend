@@ -150,22 +150,25 @@ class PerishableCreateView(APIView):
     serializer_class = CreatePerishableSerializer
 
     def post(self, request, format=None):
-        if not self.request.session.exists(self.request.session.session_key):
-            return Response({'Bad Request': 'Invalid data...'}, status=status.HTTP_400_BAD_REQUEST)
+        # if not self.request.session.exists(self.request.session.session_key):
+        # return Response({'Bad Request': 'Invalid data...'}, status=status.HTTP_400_BAD_REQUEST)
 
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             # Obtain product information
-            b_code = serializer.data.get('b_code')
+            b_code = 'EMPTY' if serializer.data.get(
+                'b_code') is None else serializer.data.get('b_code')
             title, categories, categories_score = product_information_via_barcode(
-                b_code)
+                b_code, serializer.data.get('title'))
             if (title == False):
                 title = serializer.data.get('title')
+                categories = serializer.data.get('title')
+                categories_score = serializer.data.get('title')
             img_url = gis_url(title)
             username = serializer.data.get('username')
             exp = serializer.data.get('exp')
-            qty = serializer.data.get('qty')
-
+            qty = 1 if serializer.data.get(
+                'qty') is None else serializer.data.get('b_code')
             perishable = Perishable(
                 username=username, title=title, img_url=img_url, exp=exp, qty=qty,
                 b_code=b_code, categories=categories, categories_score=categories_score)
