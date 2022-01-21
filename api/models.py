@@ -30,13 +30,13 @@ class Owner(models.Model):
 
 
 class Perishable(models.Model):
-    username = models.CharField(max_length=20, unique=False, default='DEFAULT')
+    username = models.CharField(max_length=20, unique=False, null=False)
     p_code = models.CharField(
         max_length=8, default=generate_unique_p_code, unique=True)
     title = models.CharField(max_length=200, null=False)
     img_url = models.CharField(max_length=200, null=False)
     # Fields that might not exist
-    b_code = models.CharField(max_length=200, null=False, default='')
+    b_code = models.CharField(max_length=200, default='EMPTY')
     categories = models.CharField(max_length=200, null=False, default='')
     categories_score = models.CharField(
         max_length=200, null=False, default='')

@@ -162,7 +162,7 @@ class PerishableCreateView(APIView):
             if (title == False):
                 title = serializer.data.get('title')
             img_url = gis_url(title)
-            username = self.request.session['username']
+            username = serializer.data.get('username')
             exp = serializer.data.get('exp')
             qty = serializer.data.get('qty')
 
