@@ -297,7 +297,7 @@ class PerishableDeleteManyView(APIView):
                 if len(Perishables) > 0:
                     perishable = Perishables[0]
                     perishable.delete()
-                return Response({'Message': 'Successfully deleted'}, status=status.HTTP_200_OK)
+            return Response({'Message': 'Successfully deleted'}, status=status.HTTP_200_OK)
         return Response({'Message': 'Invalid data...'}, status=status.HTTP_400_BAD_REQUEST)
 
 
