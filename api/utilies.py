@@ -143,7 +143,7 @@ def get_recommendations(N, scores):
     top = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)[:N]
     # create dataframe to load in recommendations
     recommendation = pd.DataFrame(
-        columns=['recipe', 'ingredients', 'score', 'url'])
+        columns=['recipe', 'ingredients', 'score', 'url', 'image_url'])
     count = 0
     for i in top:
         recommendation.at[count, 'recipe'] = title_parser(
@@ -151,6 +151,7 @@ def get_recommendations(N, scores):
         recommendation.at[count, 'ingredients'] = ingredient_parser_final(
             df_recipes['ingredients'][i])
         recommendation.at[count, 'url'] = df_recipes['recipe_urls'][i]
+        recommendation.at[count, 'image_url'] = df_recipes['image'][i]
         recommendation.at[count, 'score'] = "{:.3f}".format(float(scores[i]))
         count += 1
     return recommendation
