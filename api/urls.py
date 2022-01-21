@@ -11,6 +11,7 @@ urlpatterns = [
     path('perish_create', PerishableCreateView.as_view()),
     path('perish_update', PerishableUpdateView.as_view()),
     path('perish_delete', PerishableDeleteView.as_view()),
+    path('perish_delete_many', PerishableDeleteManyView.as_view()),
     path('get_user_perish', GetUsersPerishableByUsername.as_view()),
     path('get_code_perish', GetUsersPerishableByCode.as_view()),
     path('utilis/retrieve_username', retrieve_username.as_view()),
