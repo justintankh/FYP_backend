@@ -289,8 +289,9 @@ class PerishableDeleteView(APIView):
 
 class PerishableDeleteManyView(APIView):
     def post(self, request, format=None):
-        if request.data['p_code_array']:
-            p_code_array = request.data['p_code_array']
+        data = json.loads(self.request.body)
+        if data['p_code_array']:
+            p_code_array = data['p_code_array']
             for p_code in p_code_array:
                 Perishables = Perishable.objects.filter(p_code=p_code)
                 if len(Perishables) > 0:
