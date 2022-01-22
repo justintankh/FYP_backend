@@ -203,10 +203,10 @@ def RecSys(ingredients, N=5):
     print('len(Key):', len(ingredients_parsed),
           ' key(Value):', len(ingredients_tfidf.data))
 
-    for item, index in ingredients_parsed:
+    for item, index in enumerate(ingredients_parsed):
         print('#', index, '-', item)
 
-    for item, index in ingredients_tfidf.data:
+    for item, index in enumerate(ingredients_tfidf.data):
         print('#', index, '-', item)
 
     transform_results = {ingredients_parsed[i]: ingredients_tfidf.data[i] for i in range(
