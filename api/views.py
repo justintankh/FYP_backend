@@ -382,7 +382,7 @@ class GetRecipeRecommendation(APIView):
                     return Response({'Perishables not found': 'Invalid code.'}, status.HTTP_404_NOT_FOUND)
 
             ingredients = ' '.join(list(set(categories)))
-            recs_DF, transform_results = RecSys(ingredients, 5)
+            recs_DF, transform_results = RecSys(ingredients, 10)
             data = recs_DF.to_dict(orient='records')
             queryDetails = {'Product_Qty': len(perishables),
                             'Product': perishables,
