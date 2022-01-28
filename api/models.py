@@ -34,12 +34,12 @@ class Perishable(models.Model):
     p_code = models.CharField(
         max_length=8, default=generate_unique_p_code, unique=True)
     title = models.CharField(max_length=200, null=False)
-    img_url = models.CharField(max_length=200, null=False)
+    img_url = models.CharField(max_length=1000, null=False)
     # Fields that might not exist
     b_code = models.CharField(max_length=200, default='EMPTY')
-    categories = models.CharField(max_length=200, null=False, default='')
+    categories = models.CharField(max_length=1000, null=False, default='')
     categories_score = models.CharField(
-        max_length=200, null=False, default='')
+        max_length=5000, null=False, default='')
 
     qty = models.IntegerField(null=False, default=1)
     rtr_date = models.DateField(auto_now_add=True)
