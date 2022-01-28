@@ -102,7 +102,7 @@ class OwnerCreateView(APIView):
             username = serializer.data.get('username')
             queryset = Owner.objects.filter(username=username)
 
-            if len(username) < 6:
+            if len(username) < 5:
                 return Response({'Bad request': 'Minimum 5 characters for Username.'}, status=status.HTTP_400_BAD_REQUEST)
 
             if queryset.exists():
