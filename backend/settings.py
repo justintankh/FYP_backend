@@ -73,15 +73,28 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 
-# Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+# CLOUD DATABASE CONFIGURATION HERE
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd1uf7rgant7alc',
+        'HOST': 'ec2-54-156-151-232.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'rhohffkqvtixop',
+        'PASSWORD': '3d75c2e36a03ace67f9d5ec6091c6077940ee48eb77420a6ed8eab6598d5c76b',
     }
 }
+
+# LOCAL DATABASE CONFIGURATION BELOW HERE
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
