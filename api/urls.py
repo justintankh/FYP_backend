@@ -19,6 +19,5 @@ urlpatterns = [
     path('recommend_recipe', GetRecipeRecommendation.as_view()),
     path('utilis/sessions', logged_in_sessions.as_view()),
     path('logout', remove_session.as_view()),
-
     # path('owner/destroy', OwnerDestroy.as_view()),
 ]

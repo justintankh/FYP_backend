@@ -100,6 +100,7 @@ class OwnerCreateView(APIView):
                 self.request.session.create()
 
             username = serializer.data.get('username')
+            password = serializer.data.get('password')
             queryset = Owner.objects.filter(username=username)
 
             if len(username) < 5:
@@ -111,7 +112,7 @@ class OwnerCreateView(APIView):
                 self.request.session['code'] = owner.code
                 return Response({'Bad request': 'Username already exists'}, status=status.HTTP_400_BAD_REQUEST)
             else:
-                owner = Owner(username=username)
+                owner = Owner(username=username, password=password)
                 owner.save()
                 self.request.session['username'] = owner.username
                 owner = Owner.objects.filter(username=username)[0]
@@ -125,12 +126,15 @@ class OwnerLoginView(APIView):
         data = json.loads(self.request.body)
         if data:
             username = data['username']
+            password = data['password']
             queryset = Owner.objects.filter(username=username)
             # if not self.request.session.exists(self.request.session.session_key):
             self.request.session.delete()
             self.request.session.create()
             if queryset.exists():
                 owner = queryset[0]
+                if password != owner.password:
+                    return Response({'Bad request': 'Invalid password'}, status=status.HTTP_400_BAD_REQUEST)
                 self.request.session['username'] = owner.username
                 self.request.session['code'] = owner.code
                 return Response(OwnerSerializer(owner).data, status=status.HTTP_200_OK)

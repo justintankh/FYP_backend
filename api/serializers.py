@@ -11,7 +11,7 @@ class OwnerSerializer(serializers.ModelSerializer):
 class CreateOwnerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Owner
-        fields = ('username',)
+        fields = ('username', 'password',)
 
 
 class UpdateOwnerSerializer(serializers.ModelSerializer):

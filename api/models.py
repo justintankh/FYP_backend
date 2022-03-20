@@ -5,7 +5,6 @@ import random
 
 def generate_unique_code():
     length = 6
-
     while True:
         code = ''.join(random.choices(string.ascii_uppercase, k=length))
         if Owner.objects.filter(code=code).count() == 0:
@@ -15,7 +14,6 @@ def generate_unique_code():
 
 def generate_unique_p_code():
     length = 6
-
     while True:
         code = ''.join(random.choices(string.ascii_uppercase, k=length))
         if Perishable.objects.filter(p_code=code).count() == 0:
@@ -25,6 +23,7 @@ def generate_unique_p_code():
 
 class Owner(models.Model):
     username = models.CharField(max_length=20, unique=True, null=False)
+    password = models.CharField(max_length=20, default="")
     code = models.CharField(
         max_length=8, default=generate_unique_code, unique=True)
 
@@ -40,7 +39,6 @@ class Perishable(models.Model):
     categories = models.CharField(max_length=1000, null=False, default='')
     categories_score = models.CharField(
         max_length=5000, null=False, default='')
-
     qty = models.IntegerField(null=False, default=1)
     rtr_date = models.DateField(auto_now_add=True)
     exp = models.DateField()

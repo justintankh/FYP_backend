@@ -68,7 +68,7 @@ def product_information_via_barcode(barcode, reg_title=None):
     print("\x1b[31m\"title:\"\x1b[0m", title)
     print("\x1b[31m\"categories_list:\"\x1b[0m", categories_list)
 
-    # test ingredients
+    # Parsing categories and eliminating duplicated words
     categories_string = ' '.join(categories_list)
     print("\x1b[31m\"categories_string:\"\x1b[0m", categories_string)
     categories_string = remove_sub_dups(categories_string)
